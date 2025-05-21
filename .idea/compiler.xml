@@ -9,9 +9,13 @@
         <module name="spring-6-webapp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-6-di" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-6-di" options="-parameters" />
       <module name="spring-6-webapp" options="-parameters" />
     </option>
   </component>

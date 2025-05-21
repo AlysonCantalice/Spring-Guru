@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/spring-6-webapp/spring-6-webapp/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-6-di/pom.xml" />
       </list>
     </option>
   </component>
