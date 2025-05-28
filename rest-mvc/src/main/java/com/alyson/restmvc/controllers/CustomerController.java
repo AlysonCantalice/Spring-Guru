@@ -15,47 +15,50 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/customer")
 public class CustomerController {
+
+    public final static String CUSTOMER_PATH = "/api/v1/customer";
+    public final static String CUSTOMER_PATH_ID = CUSTOMER_PATH + "/{customerId}";
+
     private final CustomerService customerService;
 
-    @PatchMapping("{customerId}")
+    @PatchMapping(CUSTOMER_PATH_ID)
     public ResponseEntity<Customer> updateCustomerPatchById(@PathVariable UUID customerId, @RequestBody Customer customer) {
         customerService.patchCustomerById(customerId, customer);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("{customerId}")
+    @DeleteMapping(CUSTOMER_PATH_ID)
     public ResponseEntity<Customer> deleteCustomerById(@PathVariable UUID customerId) {
         customerService.deleteCustomerById(customerId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("{customerId}")
+    @PutMapping(CUSTOMER_PATH_ID)
     public ResponseEntity<Customer> updateCustomerById(@PathVariable UUID customerId, @RequestBody Customer customer) {
         customerService.updateCustomerById(customerId, customer);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping()
+    @PostMapping(CUSTOMER_PATH)
     public ResponseEntity<Customer> handlePost(@RequestBody Customer customer) {
         Customer savedCustomer = customerService.saveNewCustomer(customer);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("location", "/api/v1/customer/" + savedCustomer.getId().toString());
+        headers.add("location", CUSTOMER_PATH + "/" + savedCustomer.getId().toString());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @GetMapping()
+    @GetMapping(CUSTOMER_PATH)
     public List<Customer> listCostumers() {
         return customerService.listCustomers();
     }
 
-    @GetMapping("/{customerId}")
+    @GetMapping(CUSTOMER_PATH_ID)
     public Customer getCustomerById(@PathVariable UUID customerId) {
         return customerService.getCustomerById(customerId);
     }
