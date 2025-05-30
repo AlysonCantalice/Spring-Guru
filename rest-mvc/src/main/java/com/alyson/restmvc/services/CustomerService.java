@@ -1,6 +1,6 @@
 package com.alyson.restmvc.services;
 
-import com.alyson.restmvc.models.Customer;
+import com.alyson.restmvc.models.CustomerDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,15 +8,15 @@ import java.util.UUID;
 
 public interface CustomerService {
 
-    List<Customer> listCustomers();
+    List<CustomerDTO> listCustomers();
 
-    Optional<Customer> getCustomerById(UUID customersId);
+    Optional<CustomerDTO> getCustomerById(UUID customersId);
 
-    Customer saveNewCustomer(Customer customer);
+    CustomerDTO saveNewCustomer(CustomerDTO customerDTO);
 
-    void updateCustomerById(UUID customerId, Customer customer);
+    void updateCustomerById(UUID customerId, CustomerDTO customerDTO);
 
     void deleteCustomerById(UUID customerId);
 
-    void patchCustomerById(UUID customerId, Customer customer);
+    void patchCustomerById(UUID customerId, CustomerDTO customerDTO);
 }
